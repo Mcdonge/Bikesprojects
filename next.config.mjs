@@ -20,18 +20,21 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   output: 'export',
-  basePath: '/Bikesprojects',
+  basePath: process.env.NODE_ENV === 'production' ? '/Bikesprojects' : '',
   images: {
     unoptimized: true,
     loader: 'custom',
     loaderFile: './image-loader.js',
+    path: process.env.NODE_ENV === 'production' 
+      ? 'https://mcdonge.github.io/Bikesprojects' 
+      : '',
   },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  assetPrefix: '/Bikesprojects/',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Bikesprojects/' : '',
   trailingSlash: true,
   distDir: 'out',
 }
