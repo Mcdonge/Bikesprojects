@@ -48,16 +48,16 @@ export default function PackageSection() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild className="w-full">
+            <Button asChild className="w-full bg-maroon-600 hover:bg-maroon-700 text-white">
               <Link href="/bicycles?package=individual">Select Package</Link>
             </Button>
           </CardFooter>
         </Card>
 
         <Card className="flex flex-col border-primary">
-          <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
+          <CardHeader className="bg-maroon-600 text-white rounded-t-lg">
             <CardTitle className="text-2xl">Couple</CardTitle>
-            <CardDescription className="text-primary-foreground/80">Ideal for two riders</CardDescription>
+            <CardDescription className="text-white/80">Ideal for two riders</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
             <div className="text-4xl font-bold mb-6">
@@ -65,33 +65,33 @@ export default function PackageSection() {
             </div>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Two bicycle rentals</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Helmets included</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Water bottle holders</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Basic maintenance kit</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>10% discount on hourly rate</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Route map included</span>
               </li>
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild className="w-full">
+            <Button asChild className="w-full bg-maroon-600 hover:bg-maroon-700 text-white">
               <Link href="/bicycles?package=couple">Select Package</Link>
             </Button>
           </CardFooter>
@@ -108,37 +108,37 @@ export default function PackageSection() {
             </div>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>3-5 bicycle rentals</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Helmets included</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Water bottle holders</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Maintenance kit</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>15% discount on hourly rate</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Route map included</span>
               </li>
               <li className="flex items-start">
-                <Check className="mr-2 h-5 w-5 text-primary" />
+                <Check className="mr-2 h-5 w-5 text-maroon-600" />
                 <span>Group photo service</span>
               </li>
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild className="w-full">
+            <Button asChild className="w-full bg-maroon-600 hover:bg-maroon-700 text-white">
               <Link href="/bicycles?package=group">Select Package</Link>
             </Button>
           </CardFooter>

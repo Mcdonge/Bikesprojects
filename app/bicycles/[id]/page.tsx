@@ -187,7 +187,7 @@ export default function BicycleDetailPage({ params }: { params: { id: string } }
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <div className="relative rounded-lg overflow-hidden mb-4">
+            <div className="relative rounded-lg overflow-hidden mb-4 bg-maroon-200/80">
               <Image
                 src={bike.image || "/bike16.jpeg"}
                 alt={bike.name}
@@ -311,58 +311,10 @@ export default function BicycleDetailPage({ params }: { params: { id: string } }
             </Tabs>
           </div>
 
-          <div>
+          <div className="lg:col-span-1">
             <div className="sticky top-4">
-              <div className="bg-muted/50 rounded-lg p-6 mb-6">
-                <div className="mb-4">
-                  <div className="text-2xl font-bold">${bike.hourlyRate}</div>
-                  <div className="text-muted-foreground">per hour</div>
-                </div>
-
-                <Separator className="my-4" />
-
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-start gap-3">
-                    <CalendarDays className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <div className="font-medium">Flexible booking</div>
-                      <div className="text-sm text-muted-foreground">
-                        Book for as little as 1 hour or for multiple days
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <div className="font-medium">Real-time availability</div>
-                      <div className="text-sm text-muted-foreground">Our system shows you exactly what's available</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Shield className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <div className="font-medium">Insurance included</div>
-                      <div className="text-sm text-muted-foreground">Basic insurance is included with all rentals</div>
-                    </div>
-                  </div>
-                </div>
-
-                {bike.available ? (
-                  <BookingForm bikeId={bike.id} hourlyRate={bike.hourlyRate} />
-                ) : (
-                  <div className="text-center p-4 bg-muted rounded-md">
-                    <Info className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
-                    <h3 className="font-medium mb-1">Currently Booked</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      This bicycle is currently unavailable. Please check back later or browse other options.
-                    </p>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/bicycles">View Other Bicycles</Link>
-                    </Button>
-                  </div>
-                )}
+              <div className="bg-maroon-200/80 rounded-lg p-6">
+                <BookingForm bike={bike} />
               </div>
             </div>
           </div>

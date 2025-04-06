@@ -118,7 +118,7 @@ export default function FeaturedBicycles() {
             <TabsContent key={category} value={category} className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {bikes.map((bike) => (
-                  <Card key={bike.id} className="overflow-hidden bg-maroon-50/30 hover:bg-maroon-50/50 transition-colors">
+                  <Card key={bike.id} className="overflow-hidden bg-maroon-200/80 hover:bg-maroon-200/90 transition-colors">
                     <div className="relative h-48">
                       <Image src={bike.image || "/bike14.jpeg"} alt={bike.name} fill className="object-cover" />
                       {!bike.available && (

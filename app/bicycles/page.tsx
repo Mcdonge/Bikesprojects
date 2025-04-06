@@ -102,7 +102,7 @@ function BicycleList() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {bicycles.map((bike) => (
-        <Card key={bike.id} className="overflow-hidden">
+        <Card key={bike.id} className="overflow-hidden bg-maroon-200/80 hover:bg-maroon-200/90 transition-colors">
           <div className="relative h-48">
             <Image src={bike.image || "/placeholder.svg"} alt={bike.name} fill className="object-cover" />
             {!bike.available && (
