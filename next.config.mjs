@@ -24,9 +24,10 @@ const nextConfig = {
     unoptimized: true,
     domains: ['mcdonge.github.io'],
     path: '/Bikesprojects/',
+    loader: 'custom',
+    loaderFile: './image-loader.js',
   },
   trailingSlash: true,
-  distDir: 'out',
   experimental: {
     // Keep only essential experimental features
   },

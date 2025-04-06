@@ -13,5 +13,8 @@ export default function customImageLoader({ src, width, quality }) {
   
   const queryString = params.toString() ? `?${params.toString()}` : '';
   
-  return `${baseUrl}/${cleanSrc}${queryString}`;
+  // Ensure we don't have double slashes in the URL
+  const finalUrl = `${baseUrl}/${cleanSrc}${queryString}`.replace(/([^:]\/)\/+/g, '$1');
+  
+  return finalUrl;
 } 
