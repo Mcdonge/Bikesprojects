@@ -14,10 +14,10 @@ import { Separator } from "@/components/ui/separator"
 
 interface BookingFormProps {
   bikeId: number
-  hourlyRate: number
+  price: number
 }
 
-export default function BookingForm({ bikeId, hourlyRate }: BookingFormProps) {
+export default function BookingForm({ bikeId, price }: BookingFormProps) {
   const [date, setDate] = useState<Date>()
   const [startTime, setStartTime] = useState("")
   const [duration, setDuration] = useState("")
@@ -41,7 +41,7 @@ export default function BookingForm({ bikeId, hourlyRate }: BookingFormProps) {
           ? 2.55
           : 1 // 15% discount for 3 bikes
 
-  const totalCost = hourlyRate * hours * packageMultiplier
+  const totalCost = price * hours * packageMultiplier
 
   return (
     <div className="space-y-4">
@@ -141,7 +141,9 @@ export default function BookingForm({ bikeId, hourlyRate }: BookingFormProps) {
               <Separator className="my-2" />
               <div className="flex justify-between font-medium">
                 <span>Total:</span>
-                <span>${totalCost.toFixed(2)}</span>
+                <div className="text-2xl font-bold">
+                  Ksh {totalCost.toFixed(2)}
+                </div>
               </div>
             </div>
           </CardContent>

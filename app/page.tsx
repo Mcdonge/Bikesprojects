@@ -10,7 +10,7 @@ import TestimonialSection from "@/components/testimonial-section"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col bg-maroon-50/60">
       <HeroSection />
 
       <section className="container py-12 md:py-16 lg:py-20">
@@ -24,8 +24,8 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
             <CardContent className="pt-6">
-              <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                <CalendarDays className="h-6 w-6 text-primary" />
+              <div className="rounded-full bg-blue-100 w-12 h-12 flex items-center justify-center mb-4">
+                <CalendarDays className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="text-xl font-bold mb-2">Choose Your Date</h3>
               <p className="text-muted-foreground">
@@ -36,8 +36,8 @@ export default function Home() {
 
           <Card>
             <CardContent className="pt-6">
-              <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                <Users className="h-6 w-6 text-primary" />
+              <div className="rounded-full bg-green-100 w-12 h-12 flex items-center justify-center mb-4">
+                <Users className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="text-xl font-bold mb-2">Select Package</h3>
               <p className="text-muted-foreground">
@@ -48,8 +48,8 @@ export default function Home() {
 
           <Card>
             <CardContent className="pt-6">
-              <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                <Clock className="h-6 w-6 text-primary" />
+              <div className="rounded-full bg-pink-100 w-12 h-12 flex items-center justify-center mb-4">
+                <Clock className="h-6 w-6 text-pink-600" />
               </div>
               <h3 className="text-xl font-bold mb-2">Enjoy Your Ride</h3>
               <p className="text-muted-foreground">

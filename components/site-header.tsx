@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Bike, Menu, ShoppingCart, User, X } from "lucide-react"
+import Image from "next/image"
+import { Menu, ShoppingCart, User, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
@@ -22,8 +23,14 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="flex items-center gap-2 mr-6">
-          <Bike className="h-6 w-6" />
-          <span className="hidden font-bold sm:inline-block">MiamiBikes</span>
+          <Image
+            src="/Road Bike Logo.jpeg"
+            alt="MiamiBikes Logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <span className="font-bold text-lg">MiamiBikes</span>
         </Link>
 
         <nav className="hidden md:flex gap-6 flex-1">
@@ -84,8 +91,13 @@ export default function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
               <div className="flex items-center gap-2 mb-8">
-                <Bike className="h-6 w-6" />
-                <span className="font-bold">MiamiBikes</span>
+                <Image
+                  src="/logo.png"
+                  alt="MiamiBikes Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto"
+                />
                 <SheetClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
                   <X className="h-4 w-4" />
                   <span className="sr-only">Close</span>

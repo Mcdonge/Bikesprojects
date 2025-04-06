@@ -132,14 +132,9 @@ export default function FeaturedBicycles() {
                     <CardContent className="pt-6">
                       <h3 className="text-xl font-bold mb-1">{bike.name}</h3>
                       <p className="text-muted-foreground mb-4">{bike.type} Bike</p>
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="text-2xl font-bold">${bike.hourlyRate}</span>
-                          <span className="text-muted-foreground"> / hour</span>
-                        </div>
-                        <Badge variant={bike.available ? "outline" : "secondary"}>
-                          {bike.available ? "Available" : "Booked"}
-                        </Badge>
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl font-bold">Ksh {bike.hourlyRate}/hr</span>
+                        <Badge variant="outline">{bike.available ? "Available" : "Booked"}</Badge>
                       </div>
                     </CardContent>
                     <CardFooter>

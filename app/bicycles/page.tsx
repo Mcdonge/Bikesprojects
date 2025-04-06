@@ -17,65 +17,72 @@ import { Slider } from "@/components/ui/slider"
 const bicycles = [
   {
     id: 1,
-    name: "Alpine Explorer",
-    type: "Mountain",
-    hourlyRate: 15,
-    image: "/bike16.jpeg?height=300&width=400",
-    available: true,
-    features: ["21-speed", "Front suspension", "Disc brakes"],
+    name: "Mountain Pro",
+    description: "Perfect for off-road adventures and rough terrain",
+    image: "/bike1.jpeg",
+    price: 80,
+    features: ["Suspension", "Mountain Tires", "Gear System"],
+    quality: "Premium",
+    available: true
   },
   {
     id: 2,
-    name: "Trail Blazer Pro",
-    type: "Mountain",
-    hourlyRate: 18,
-    image: "/bike17.jpeg?height=300&width=400",
-    available: true,
-    features: ["24-speed", "Full suspension", "Hydraulic disc brakes"],
+    name: "City Cruiser",
+    description: "Comfortable ride for urban exploration",
+    image: "/bike2.jpeg",
+    price: 70,
+    features: ["Comfort Seat", "Basket", "Bell"],
+    quality: "Standard",
+    available: true
   },
   {
     id: 3,
-    name: "Summit Rider",
-    type: "Mountain",
-    hourlyRate: 20,
-    image: "/bike18.jpeg?height=300&width=400",
-    available: false,
-    features: ["27-speed", "Carbon frame", "Tubeless tires"],
+    name: "Road Racer",
+    description: "Lightweight and fast for road cycling",
+    image: "/bike3.jpeg",
+    price: 75,
+    features: ["Light Frame", "Road Tires", "Aerodynamic"],
+    quality: "Premium",
+    available: true
   },
   {
     id: 4,
-    name: "City Cruiser",
-    type: "Road",
-    hourlyRate: 12,
-    image: "/bike19.jpeg?height=300&width=400",
-    available: true,
-    features: ["7-speed", "Step-through frame", "Basket"],
+    name: "Hybrid Explorer",
+    description: "Versatile bike for all types of terrain",
+    image: "/bike4.jpeg",
+    price: 65,
+    features: ["Hybrid Tires", "Comfort Grip", "Multi-Gear"],
+    quality: "Standard",
+    available: true
   },
   {
     id: 5,
-    name: "Urban Glider",
-    type: "Road",
-    hourlyRate: 14,
-    image: "/bike10.jpeg?height=300&width=400",
-    available: true,
-    features: ["8-speed", "Lightweight frame", "Fenders"],
+    name: "Electric Commuter",
+    description: "E-bike for effortless city commuting",
+    image: "/bike5.jpeg",
+    price: 80,
+    features: ["Electric Motor", "Battery Pack", "LCD Display"],
+    quality: "Premium",
+    available: false
   },
   {
     id: 6,
-    name: "Speedster Elite",
-    type: "Road",
-    hourlyRate: 16,
-    image: "/bike9.jpeg?height=300&width=400",
-    available: true,
-    features: ["11-speed", "Carbon fork", "Drop handlebars"],
+    name: "Classic Cruiser",
+    description: "Retro-style bike for casual riding",
+    image: "/bike6.jpg",
+    price: 60,
+    features: ["Classic Design", "Comfort Seat", "Single Speed"],
+    quality: "Basic",
+    available: true
   },
   {
     id: 7,
     name: "E-Power Rider",
     type: "Electric",
     hourlyRate: 25,
-    image: "/bike20.jpeg?height=300&width=400",
-    available: true,
+    price: 76,
+    image: "/bike20.jpeg",
+    available: false,
     features: ["350W motor", "Range: 40 miles", "Pedal assist"],
   },
   {
@@ -83,8 +90,9 @@ const bicycles = [
     name: "Volt Cruiser",
     type: "Electric",
     hourlyRate: 28,
-    image: "/bike21.jpeg?height=300&width=400",
-    available: false,
+    price: 76,
+    image: "/bike21.jpeg",
+    available: true,
     features: ["500W motor", "Range: 50 miles", "Throttle control"],
   },
   {
@@ -92,7 +100,8 @@ const bicycles = [
     name: "Electra Glide",
     type: "Electric",
     hourlyRate: 30,
-    image: "/bike22.jpeg?height=300&width=400",
+    price: 76,
+    image: "/bike22.jpeg",
     available: true,
     features: ["750W motor", "Range: 60 miles", "LCD display"],
   },
@@ -119,14 +128,9 @@ function BicycleList() {
               <Badge variant="outline">{bike.type}</Badge>
             </div>
             <p className="text-muted-foreground mb-4">{bike.features.join(" • ")}</p>
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="text-2xl font-bold">${bike.hourlyRate}</span>
-                <span className="text-muted-foreground"> / hour</span>
-              </div>
-              <Badge variant={bike.available ? "outline" : "secondary"}>
-                {bike.available ? "Available" : "Booked"}
-              </Badge>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl font-bold">Ksh {bike.price}<span className="text-sm text-muted-foreground">/hr</span></span>
+              <Badge variant="outline" className="bg-gray-100/50 text-gray-600 border-gray-300">{bike.available ? "Available" : "Booked"}</Badge>
             </div>
           </CardContent>
           <CardFooter>
@@ -214,8 +218,8 @@ export default function BicyclesPage() {
                       <div className="space-y-4">
                         <Slider defaultValue={[10, 30]} min={5} max={50} step={1} />
                         <div className="flex justify-between">
-                          <span>$5</span>
-                          <span>$50</span>
+                          <span>Ksh 5</span>
+                          <span>Ksh 500</span>
                         </div>
                       </div>
                     </div>

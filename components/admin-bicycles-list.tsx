@@ -23,7 +23,7 @@ const bicycles = [
     id: 1,
     name: "Alpine Explorer",
     type: "Mountain",
-    hourlyRate: 15,
+    price: 80,
     image: "/bike8.png?height=100&width=100",
     status: "available",
     condition: "Excellent",
@@ -33,7 +33,7 @@ const bicycles = [
     id: 2,
     name: "Trail Blazer Pro",
     type: "Mountain",
-    hourlyRate: 18,
+    price: 70,
     image: "/bike8.png?height=100&width=100",
     status: "available",
     condition: "Good",
@@ -43,7 +43,7 @@ const bicycles = [
     id: 3,
     name: "Summit Rider",
     type: "Mountain",
-    hourlyRate: 20,
+    price: 75,
     image: "/bike7.png?height=100&width=100",
     status: "booked",
     condition: "Excellent",
@@ -53,7 +53,7 @@ const bicycles = [
     id: 4,
     name: "City Cruiser",
     type: "Road",
-    hourlyRate: 12,
+    price: 65,
     image: "/bike6.png?height=100&width=100",
     status: "available",
     condition: "Good",
@@ -63,7 +63,7 @@ const bicycles = [
     id: 5,
     name: "Urban Glider",
     type: "Road",
-    hourlyRate: 14,
+    price: 60,
     image: "/bike5.png?height=100&width=100",
     status: "available",
     condition: "Fair",
@@ -73,7 +73,7 @@ const bicycles = [
     id: 6,
     name: "Speedster Elite",
     type: "Road",
-    hourlyRate: 16,
+    price: 80,
     image: "/bike4.png?height=100&width=100",
     status: "maintenance",
     condition: "Needs repair",
@@ -83,7 +83,7 @@ const bicycles = [
     id: 7,
     name: "E-Power Rider",
     type: "Electric",
-    hourlyRate: 25,
+    price: 80,
     image: "/bike3.png?height=100&width=100",
     status: "available",
     condition: "Excellent",
@@ -93,7 +93,7 @@ const bicycles = [
     id: 8,
     name: "Volt Cruiser",
     type: "Electric",
-    hourlyRate: 28,
+    price: 70,
     image: "/bike2.png?height=100&width=100",
     status: "booked",
     condition: "Good",
@@ -103,7 +103,7 @@ const bicycles = [
     id: 9,
     name: "Electra Glide",
     type: "Electric",
-    hourlyRate: 30,
+    price: 75,
     image: "/bike1.png?height=100&width=100",
     status: "available",
     condition: "Excellent",
@@ -179,7 +179,7 @@ export default function AdminBicyclesList() {
               <TableHead>ID</TableHead>
               <TableHead>Bicycle</TableHead>
               <TableHead>Type</TableHead>
-              <TableHead>Hourly Rate</TableHead>
+              <TableHead>Price</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Condition</TableHead>
               <TableHead>Last Maintenance</TableHead>
@@ -200,7 +200,7 @@ export default function AdminBicyclesList() {
                     </div>
                   </TableCell>
                   <TableCell>{bike.type}</TableCell>
-                  <TableCell>${bike.hourlyRate.toFixed(2)}</TableCell>
+                  <TableCell>Ksh {bike.price}/hr</TableCell>
                   <TableCell>
                     <Badge
                       variant={

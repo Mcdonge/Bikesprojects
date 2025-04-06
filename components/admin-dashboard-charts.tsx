@@ -152,12 +152,12 @@ export default function AdminDashboardCharts() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <div className="text-sm text-muted-foreground">This Month</div>
-                    <div className="text-2xl font-bold">$4,350.00</div>
+                    <div className="text-2xl font-bold">Ksh 435,000.00</div>
                     <div className="text-xs text-green-500">+12.5% from last month</div>
                   </div>
                   <div className="space-y-1.5">
                     <div className="text-sm text-muted-foreground">This Year</div>
-                    <div className="text-2xl font-bold">$24,120.00</div>
+                    <div className="text-2xl font-bold">Ksh 2,412,000.00</div>
                     <div className="text-xs text-green-500">+18.2% from last year</div>
                   </div>
                 </div>

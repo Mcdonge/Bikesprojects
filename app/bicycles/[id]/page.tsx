@@ -18,10 +18,10 @@ const bicycles = [
     hourlyRate: 15,
     image: "/Bikesprojects/bike1.jpeg",
     gallery: [
-      "/Bikesprojects/bike2.jfif",
+      "/Bikesprojects/bike2.jpeg",
       "/Bikesprojects/bike3.jpeg",
-      "/Bikesprojects/bike4.jfif",
-      "/Bikesprojects/bike5.jfif",
+      "/Bikesprojects/bike4.jpeg",
+      "/Bikesprojects/bike5.jpeg",
     ],
     available: true,
     features: ["21-speed", "Front suspension", "Disc brakes"],
@@ -45,11 +45,11 @@ const bicycles = [
     name: "City Cruiser",
     type: "Urban",
     hourlyRate: 12,
-    image: "/Bikesprojects/bike2.jfif",
+    image: "/Bikesprojects/bike2.jpeg",
     gallery: [
       "/Bikesprojects/bike3.jpeg",
-      "/Bikesprojects/bike4.jfif",
-      "/Bikesprojects/bike5.jfif",
+      "/Bikesprojects/bike4.jpeg",
+      "/Bikesprojects/bike5.jpeg",
     ],
     available: true,
     features: ["7-speed", "Comfort saddle", "Fenders"],
@@ -72,7 +72,7 @@ const bicycles = [
     name: "Road Racer",
     type: "Road",
     hourlyRate: 20,
-    image: "/Bikesprojects/bike5.jfif",
+    image: "/Bikesprojects/bike5.jpeg",
     gallery: [
       "/Bikesprojects/bike6.jpg",
       "/Bikesprojects/bike7.jpeg",
@@ -314,6 +314,9 @@ export default function BicycleDetailPage({ params }: { params: { id: string } }
           <div className="lg:col-span-1">
             <div className="sticky top-4">
               <div className="bg-maroon-200/80 rounded-lg p-6">
+                <div className="text-3xl font-bold mb-4">
+                  Ksh {bike.hourlyRate}/hr
+                </div>
                 <BookingForm bike={bike} />
               </div>
             </div>

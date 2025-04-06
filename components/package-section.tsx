@@ -21,8 +21,8 @@ export default function PackageSection() {
             <CardDescription>Perfect for solo riders</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <div className="text-4xl font-bold mb-6">
-              $15 <span className="text-muted-foreground text-base font-normal">/ hour</span>
+            <div className="text-3xl font-bold">
+              Ksh 60 <span className="text-muted-foreground text-base font-normal">/ hour</span>
             </div>
             <ul className="space-y-2">
               <li className="flex items-start">
@@ -60,8 +60,8 @@ export default function PackageSection() {
             <CardDescription className="text-white/80">Ideal for two riders</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <div className="text-4xl font-bold mb-6">
-              $25 <span className="text-muted-foreground text-base font-normal">/ hour</span>
+            <div className="text-3xl font-bold">
+              Ksh 100 <span className="text-muted-foreground text-base font-normal">/ hour</span>
             </div>
             <ul className="space-y-2">
               <li className="flex items-start">
@@ -103,8 +103,8 @@ export default function PackageSection() {
             <CardDescription>For 3-5 people</CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <div className="text-4xl font-bold mb-6">
-              $50 <span className="text-muted-foreground text-base font-normal">/ hour</span>
+            <div className="text-3xl font-bold">
+              Ksh 280 <span className="text-muted-foreground text-base font-normal">/ hour</span>
             </div>
             <ul className="space-y-2">
               <li className="flex items-start">
