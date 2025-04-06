@@ -23,12 +23,21 @@ const nextConfig = {
   basePath: '/Bikesprojects',
   images: {
     unoptimized: true,
+    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  assetPrefix: '/Bikesprojects/',
+  trailingSlash: true,
 }
 
 if (userConfig) {
