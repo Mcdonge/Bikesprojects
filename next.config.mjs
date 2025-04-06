@@ -22,6 +22,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
+    domains: ['mcdonge.github.io'],
+    path: '/Bikesprojects/',
   },
   trailingSlash: true,
   distDir: 'out',
