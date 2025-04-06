@@ -26,7 +26,9 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": ["react", "react-dom", "node"],
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": [
     "**/*.ts",

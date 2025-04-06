@@ -23,14 +23,21 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules
+          rm -rf .next
+          rm -rf out
+          npm ci
 
       - name: Build
         run: |
           npm run build
+          # Create necessary files for GitHub Pages
           touch ./out/.nojekyll
           echo "bikesprojects.mcdonge.github.io" > ./out/CNAME
+          # Verify the build output
+          ls -la ./out
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -38,4 +45,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           publish_branch: gh-pages
-          force_orphan: true 
+          force_orphan: true
+          commit_message: "Deploy: ${{ github.event.head_commit.message }}" 

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { CalendarDays, Clock, Info, MapPin, Shield, Star } from "lucide-react"
+import type { LucideProps } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -39,7 +40,123 @@ const bicycles = [
     rating: 4.8,
     reviews: 124,
   },
+  {
+    id: 2,
+    name: "City Cruiser",
+    type: "Urban",
+    hourlyRate: 12,
+    image: "/bike2.jpeg",
+    gallery: [
+      "/bike2.jpeg",
+      "/bike3.jpeg",
+      "/bike4.jpeg",
+    ],
+    available: true,
+    features: ["7-speed", "Comfort saddle", "Fenders"],
+    description: "Perfect for city commuting and casual rides around town.",
+    specifications: {
+      frame: "Steel",
+      fork: "Rigid",
+      shifters: "Shimano Tourney",
+      brakes: "V-brakes",
+      wheels: "26-inch",
+      tires: 'Schwalbe Marathon 1.75"',
+      weight: "15 kg",
+    },
+    location: "City Center Branch",
+    rating: 4.5,
+    reviews: 89,
+  },
+  {
+    id: 3,
+    name: "Road Racer",
+    type: "Road",
+    hourlyRate: 20,
+    image: "/bike5.jpeg",
+    gallery: [
+      "/bike5.jpeg",
+      "/bike6.jpeg",
+      "/bike7.jpeg",
+    ],
+    available: true,
+    features: ["18-speed", "Carbon frame", "Drop handlebars"],
+    description: "Built for speed and long-distance road cycling.",
+    specifications: {
+      frame: "Carbon fiber",
+      fork: "Carbon",
+      shifters: "Shimano 105",
+      brakes: "Dual-pivot caliper",
+      wheels: "700c",
+      tires: 'Continental Grand Prix 25c',
+      weight: "8.5 kg",
+    },
+    location: "Sports Complex Branch",
+    rating: 4.9,
+    reviews: 156,
+  },
+  {
+    id: 4,
+    name: "Electric Commuter",
+    type: "E-Bike",
+    hourlyRate: 25,
+    image: "/bike8.jpeg",
+    gallery: [
+      "/bike8.jpeg",
+      "/bike9.jpeg",
+      "/bike10.jpeg",
+    ],
+    available: true,
+    features: ["Electric assist", "7-speed", "LED lights"],
+    description: "Make your commute effortless with this electric-assist bicycle.",
+    specifications: {
+      frame: "Aluminum",
+      motor: "250W hub motor",
+      battery: "36V 10Ah",
+      range: "50-80 km",
+      shifters: "Shimano Nexus",
+      brakes: "Hydraulic disc",
+      wheels: "27.5-inch",
+      weight: "22 kg",
+    },
+    location: "Tech Park Branch",
+    rating: 4.7,
+    reviews: 203,
+  },
+  {
+    id: 5,
+    name: "Hybrid Explorer",
+    type: "Hybrid",
+    hourlyRate: 18,
+    image: "/bike11.jpeg",
+    gallery: [
+      "/bike11.jpeg",
+      "/bike12.jpeg",
+      "/bike13.jpeg",
+    ],
+    available: true,
+    features: ["21-speed", "Suspension fork", "Rack mounts"],
+    description: "Versatile hybrid bike perfect for both city and light trail riding.",
+    specifications: {
+      frame: "Aluminum",
+      fork: "SR Suntour XCT",
+      shifters: "Shimano Acera",
+      brakes: "Mechanical disc",
+      wheels: "700c",
+      tires: 'Schwalbe Marathon Plus 35c',
+      weight: "12.5 kg",
+    },
+    location: "University Branch",
+    rating: 4.6,
+    reviews: 178,
+  }
 ]
+
+// Add generateStaticParams function
+export async function generateStaticParams() {
+  return bicycles.map((bike) => ({
+    id: bike.id.toString(),
+  }))
+}
 
 export default function BicycleDetailPage({ params }: { params: { id: string } }) {
   const bikeId = Number.parseInt(params.id)
@@ -91,7 +208,7 @@ export default function BicycleDetailPage({ params }: { params: { id: string } }
               {bike.gallery.map((img, i) => (
                 <div key={i} className="relative rounded-md overflow-hidden">
                   <Image
-                    src={img || "/placeholder.svg"}
+                    src={img || "/bike8.jpeg"}
                     alt={`${bike.name} view ${i + 1}`}
                     width={200}
                     height={150}

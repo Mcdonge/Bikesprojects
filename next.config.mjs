@@ -20,15 +20,16 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   output: 'export',
-  basePath: '/Bikesprojects',
   images: {
     unoptimized: true,
   },
-  assetPrefix: '/Bikesprojects/',
   trailingSlash: true,
   distDir: 'out',
   experimental: {
-    appDir: true,
+    // Keep only essential experimental features
+  },
+  webpack: (config, { isServer }) => {
+    return config;
   }
 }
 
