@@ -23,13 +23,8 @@ const nextConfig = {
   basePath: '/Bikesprojects',
   images: {
     unoptimized: true,
-    domains: ['localhost'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    loader: 'custom',
+    loaderFile: './image-loader.js',
   },
   experimental: {
     webpackBuildWorker: true,
@@ -38,6 +33,7 @@ const nextConfig = {
   },
   assetPrefix: '/Bikesprojects/',
   trailingSlash: true,
+  distDir: 'out',
 }
 
 if (userConfig) {
