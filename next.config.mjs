@@ -27,6 +27,9 @@ const nextConfig = {
   assetPrefix: '/Bikesprojects/',
   trailingSlash: true,
   distDir: 'out',
+  experimental: {
+    appDir: true,
+  }
 }
 
 if (userConfig) {
