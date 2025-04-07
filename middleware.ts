@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // For protected routes (not admin)
-  if (pathname.startsWith("/profile") || pathname.startsWith("/bookings")) {
+  if (pathname.startsWith("/profile") || pathname.startsWith("/bookings") || pathname.startsWith("/cart")) {
     if (!session) {
       return NextResponse.redirect(new URL("/auth/login", request.url))
     }
@@ -50,5 +50,13 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*", "/bookings/:path*", "/auth/:path*"],
-} 
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+}

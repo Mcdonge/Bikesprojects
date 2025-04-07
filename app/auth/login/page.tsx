@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
 
 export default function LoginPage() {
+  // Login state is handled by auth layout
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
@@ -36,14 +37,26 @@ export default function LoginPage() {
       }
 
       // Store the token and user data
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      if (rememberMe) {
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("user", JSON.stringify(data.user))
+      } else {
+        sessionStorage.setItem("token", data.token)
+        sessionStorage.setItem("user", JSON.stringify(data.user))
+      }
       
       // Show success message
       toast.success("Login successful!")
       
-      // Redirect to home page only after successful login
-      router.push("/")
+      // Trigger a storage event for the site header
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'user',
+        newValue: JSON.stringify(data.user)
+      }))
+      
+      // Update the router
+      router.replace("/")
+      router.refresh()
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Login failed")
     } finally {
@@ -52,8 +65,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <div className="max-w-md mx-auto">
+    <>
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold">Welcome Back</h1>
           <p className="text-muted-foreground mt-2">
@@ -93,7 +105,7 @@ export default function LoginPage() {
                 checked={rememberMe}
                 onCheckedChange={(checked) => setRememberMe(checked as boolean)}
               />
-              <Label htmlFor="remember">Remember me</Label>
+              <Label htmlFor="remember" className="text-sm">Remember me</Label>
             </div>
             <Link
               href="/auth/forgot-password"
@@ -103,19 +115,25 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Signing in..." : "Sign In"}
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Sign in"}
           </Button>
 
           <div className="text-center text-sm">
-            Don't have an account?{" "}
-            <Link href="/auth/register" className="text-primary hover:underline">
+            <span className="text-muted-foreground">Don't have an account? </span>
+            <Link
+              href="/auth/register"
+              className="text-primary hover:underline"
+            >
               Sign up
             </Link>
           </div>
         </form>
-      </div>
-    </div>
+    </>
   )
 }
 

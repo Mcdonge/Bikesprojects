@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -12,6 +12,13 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
 
 export default function RegisterPage() {
+  // Check if user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      window.location.href = "/"
+    }
+  }, [])
   const router = useRouter()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -64,8 +71,17 @@ export default function RegisterPage() {
       // Show success message
       toast.success("Registration successful!")
       
-      // Redirect to home page only after successful registration
-      router.push("/")
+      // Trigger a storage event for the site header
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'user',
+        newValue: JSON.stringify(data.user)
+      }))
+      
+      // Wait a bit for the state to update
+      setTimeout(() => {
+        // Redirect to home page
+        window.location.href = "/"
+      }, 100)
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Registration failed")
     } finally {

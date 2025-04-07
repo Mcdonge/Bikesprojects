@@ -2,8 +2,15 @@ import { NextResponse } from "next/server"
 import { compare } from "bcryptjs"
 import { prisma } from "@/lib/prisma"
 import { encrypt } from "@/lib/auth"
+import { rateLimit } from "@/lib/rate-limit"
+import { User } from "@prisma/client"
+
+const loginRateLimit = rateLimit({ limit: 5, windowMs: 15 * 60 * 1000 }) // 5 requests per 15 minutes
 
 export async function POST(req: Request) {
+  // Check rate limit
+  const rateLimitResult = await loginRateLimit()
+  if (rateLimitResult) return rateLimitResult
   try {
     const { email, password } = await req.json()
 
@@ -23,10 +30,28 @@ export async function POST(req: Request) {
         email: true,
         firstName: true,
         lastName: true,
-        isAdmin: true,
         password: true,
       },
     })
+
+    if (!user) {
+      return NextResponse.json(
+        { message: "Invalid email or password" },
+        { status: 401 }
+      )
+    }
+
+    // Get full user data including isAdmin status
+    const fullUser = await prisma.user.findUnique({
+      where: { id: user.id },
+    })
+
+    if (!fullUser) {
+      return NextResponse.json(
+        { message: "User not found" },
+        { status: 401 }
+      )
+    }
 
     if (!user) {
       return NextResponse.json(
@@ -55,7 +80,13 @@ export async function POST(req: Request) {
     const response = NextResponse.json(
       { 
         message: "Login successful",
-        user: userWithoutPassword,
+        user: {
+          id: fullUser.id,
+          email: fullUser.email,
+          firstName: fullUser.firstName,
+          lastName: fullUser.lastName,
+          isAdmin: fullUser.isAdmin
+        },
         token: session
       },
       { status: 200 }

@@ -11,25 +11,50 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String    @id @default(cuid())
+  email     String    @unique
   password  String
   firstName String
   lastName  String
-  isAdmin   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  isAdmin   Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   bookings  Booking[]
+  cartItems Cart[]
 }
 
 model Booking {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  bicycleId   String
+  startDate   DateTime
+  endDate     DateTime
+  status      String   @default("pending")
+  price       Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bicycle     Bicycle  @relation(fields: [bicycleId], references: [id])
+}
+
+model Bicycle {
+  id        String    @id @default(cuid())
+  name      String
+  price     Float
+  image     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+  cartItems Cart[]
+}
+
+model Cart {
   id        String   @id @default(cuid())
   userId    String
+  bicycleId String
+  quantity  Int      @default(1)
   user      User     @relation(fields: [userId], references: [id])
-  bikeId    String
-  startDate DateTime
-  endDate   DateTime
-  status    String   @default("pending")
+  bicycle   Bicycle  @relation(fields: [bicycleId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-} 
+}

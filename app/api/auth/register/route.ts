@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { hash } from "bcryptjs"
 import { prisma } from "@/lib/prisma"
 import { encrypt } from "@/lib/auth"
+import { validatePassword } from "@/lib/auth-validation"
 
 export async function POST(req: Request) {
   try {
@@ -27,6 +28,15 @@ export async function POST(req: Request) {
       )
     }
 
+    // Validate password
+    const passwordValidation = validatePassword(password)
+    if (!passwordValidation.isValid) {
+      return NextResponse.json(
+        { message: passwordValidation.message },
+        { status: 400 }
+      )
+    }
+
     // Hash password
     const hashedPassword = await hash(password, 12)
 
@@ -37,14 +47,8 @@ export async function POST(req: Request) {
         password: hashedPassword,
         firstName,
         lastName,
-      },
-      select: {
-        id: true,
-        email: true,
-        firstName: true,
-        lastName: true,
-        isAdmin: true,
-      },
+        isAdmin: false, // Default to regular user
+      }
     })
 
     // Create session
@@ -54,7 +58,13 @@ export async function POST(req: Request) {
     const response = NextResponse.json(
       { 
         message: "User created successfully",
-        user,
+        user: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          isAdmin: user.isAdmin
+        },
         token: session
       },
       { status: 201 }

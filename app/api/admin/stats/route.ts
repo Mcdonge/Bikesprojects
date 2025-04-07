@@ -2,55 +2,55 @@ import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getSession } from "@/lib/auth"
 
-export async function GET(req: Request) {
+export async function GET(request: Request) {
   try {
     const session = await getSession()
     if (!session) {
-      return NextResponse.json(
-        { message: "Unauthorized" },
-        { status: 401 }
-      )
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 
-    // Check if user is admin
+    // Verify admin privileges
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
-      select: { isAdmin: true }
     })
 
     if (!user?.isAdmin) {
-      return NextResponse.json(
-        { message: "Forbidden" },
-        { status: 403 }
-      )
+      return NextResponse.json({ message: "Unauthorized" }, { status: 403 })
     }
 
-    // Get all stats in parallel
-    const [
-      totalUsers,
-      totalBikes,
-      totalBookings,
-      pendingBookings
-    ] = await Promise.all([
+    // Get stats
+    const [totalUsers, totalBikes, activeBookings, monthlyRevenue] = await Promise.all([
       prisma.user.count(),
       prisma.bicycle.count(),
-      prisma.booking.count(),
       prisma.booking.count({
-        where: { status: "PENDING" }
-      })
+        where: {
+          status: "confirmed",
+        },
+      }),
+      prisma.booking.aggregate({
+        _sum: {
+          price: true,
+        },
+        where: {
+          status: "confirmed",
+          createdAt: {
+            gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
+          },
+        },
+      }),
     ])
 
     return NextResponse.json({
       totalUsers,
       totalBikes,
-      totalBookings,
-      pendingBookings
+      activeBookings,
+      monthlyRevenue: monthlyRevenue._sum.price || 0,
     })
   } catch (error) {
     console.error("Error fetching admin stats:", error)
     return NextResponse.json(
-      { message: "Something went wrong" },
+      { message: "Failed to fetch admin stats" },
       { status: 500 }
     )
   }
-} 
+}
